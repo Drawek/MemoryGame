@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour {
 	public Dictionary<string, Sprite> inventory  = new Dictionary<string, Sprite>();
     [HideInInspector]
     public bool isChaosWorld = false, wasChaosWorld, switchingWorlds;
-    public GameObject lightWorld, darkWorld;
-
     private static GameManager instance;
 	public static GameManager Instance{
         get { 

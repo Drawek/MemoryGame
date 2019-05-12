@@ -1101,6 +1101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueItem
       objectReference: {fileID: 0}
+    - target: {fileID: 1490816698961836, guid: 0d2ce79f41aef454d804e654a4a633f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4055982378703454, guid: 0d2ce79f41aef454d804e654a4a633f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.222855
@@ -9811,24 +9815,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114003314625850042, guid: b022250573709434c9737ce47e1017e3,
-        type: 3}
-      propertyPath: spawnToObject
-      value: StartPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 114003314625850042, guid: b022250573709434c9737ce47e1017e3,
-        type: 3}
-      propertyPath: resetPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4250647727313090, guid: b022250573709434c9737ce47e1017e3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -30.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 4250647727313090, guid: b022250573709434c9737ce47e1017e3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b022250573709434c9737ce47e1017e3, type: 3}

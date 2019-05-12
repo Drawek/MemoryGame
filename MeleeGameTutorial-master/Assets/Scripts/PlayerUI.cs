@@ -66,6 +66,8 @@ public class PlayerUI : MonoBehaviour {
 			NewPlayer.Instance.gameObject.GetComponent<MeshRenderer> ().enabled = true;
             NewPlayer.Instance.curStress = NewPlayer.Instance.startStress;
             NewPlayer.Instance.Freeze (false);
+            NewPlayer.Instance.canSwitchWorld = true;
+            GameManager.Instance.isChaosWorld = false;
 		}
 		SceneManager.LoadScene(loadSceneName);
 		Debug.Log ("Got camera effect component");

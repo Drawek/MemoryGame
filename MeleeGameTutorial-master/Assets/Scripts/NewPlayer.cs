@@ -64,16 +64,16 @@ public class NewPlayer : PhysicsObject {
 
     protected override void ComputeVelocity()
     {
-		//Player movement && attack
-		Vector2 move = Vector2.zero;
-
-		ground = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), -Vector2.up);
-		launch += (0 - launch) * Time.deltaTime*launchRecovery;
-
+        //Switching Worlds
         if (Input.GetButtonDown("SwitchWorld") && canSwitchWorld)
         {
             GameManager.Instance.SwitchWorld();
         }
+        //Player movement && attack
+        Vector2 move = Vector2.zero;
+
+		ground = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), -Vector2.up);
+		launch += (0 - launch) * Time.deltaTime*launchRecovery;
 
         if (!frozen) {
 			move.x = Input.GetAxis ("Horizontal") + launch;
@@ -178,7 +178,7 @@ public class NewPlayer : PhysicsObject {
 	public void Die(){
 		deathParticles.gameObject.SetActive (true);
 		deathParticles.Emit (10);
-		deathParticles.transform.parent = transform.parent;
+		//deathParticles.transform.parent = transform.parent;
 		GameManager.Instance.playerUI.animator.SetTrigger ("coverScreen");
 		GameManager.Instance.playerUI.loadSceneName = SceneManager.GetActiveScene().name;
 		GameManager.Instance.playerUI.spawnToObject = "SpawnStart";
