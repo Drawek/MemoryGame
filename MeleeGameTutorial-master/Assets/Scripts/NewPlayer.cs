@@ -77,7 +77,8 @@ public class NewPlayer : PhysicsObject {
 
         if (!frozen) {
 			move.x = Input.GetAxis ("Horizontal") + launch;
-
+            
+            //Jumping
 			if (Input.GetButtonDown ("Jump") && grounded) {
 				velocity.y = jumpTakeOffSpeed;
 				PlayJumpSound ();
