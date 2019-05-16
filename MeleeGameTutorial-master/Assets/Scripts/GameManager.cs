@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	// Singleton instantiation
+    // Singleton instantiation
+    public GameObject checkPoint;
+    [HideInInspector] public Transform entrance;
 	public AudioSource audioSource;
 	public DialogueBox dialogueBox;
 	public PlayerUI playerUI;
 	public int gemAmount;
 	public Dictionary<string, Sprite> inventory  = new Dictionary<string, Sprite>();
     [HideInInspector]
-    public bool isChaosWorld = false, wasChaosWorld, switchingWorlds;
+    public bool isChaosWorld = false, wasChaosWorld, switchingWorlds, resetWorlds;
+    public bool playerIsDead;
+    public LevelManager curLevel;
     private static GameManager instance;
 	public static GameManager Instance{
         get { 
@@ -35,6 +39,12 @@ public class GameManager : MonoBehaviour {
         else
             switchingWorlds = false;
     }
+
+    private void LateUpdate()
+    {
+        if(resetWorlds)
+           StartCoroutine(ResetWorld());
+    }
     // Use this for initialization
     public void GetInventoryItem (string name, Sprite image) {
 		inventory.Add (name, image);
@@ -56,4 +66,14 @@ public class GameManager : MonoBehaviour {
         isChaosWorld = !isChaosWorld;
     }
 
+    IEnumerator ResetWorld()
+    {
+        int timer = 0;
+        while(timer < 2)
+        {
+            yield return new WaitForEndOfFrame();
+            timer++;
+        }
+            resetWorlds = false;
+    }
 }

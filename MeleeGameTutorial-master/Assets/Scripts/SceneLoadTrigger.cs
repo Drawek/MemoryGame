@@ -19,8 +19,8 @@ public class SceneLoadTrigger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject == NewPlayer.Instance.gameObject) {
-			GameManager.Instance.playerUI.animator.SetTrigger ("coverScreen");
-			GameManager.Instance.playerUI.loadSceneName = loadSceneName;
+            GameManager.Instance.playerUI.animator.SetTrigger("coverScreen");
+            GameManager.Instance.playerUI.loadSceneName = loadSceneName;
 			GameManager.Instance.playerUI.spawnToObject = spawnToObject;
 			enabled = false;
 		}

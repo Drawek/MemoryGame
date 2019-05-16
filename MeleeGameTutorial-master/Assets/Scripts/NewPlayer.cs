@@ -69,6 +69,7 @@ public class NewPlayer : PhysicsObject {
         {
             GameManager.Instance.SwitchWorld();
         }
+        
         //Player movement && attack
         Vector2 move = Vector2.zero;
 
@@ -76,7 +77,12 @@ public class NewPlayer : PhysicsObject {
 		launch += (0 - launch) * Time.deltaTime*launchRecovery;
 
         if (!frozen) {
-			move.x = Input.GetAxis ("Horizontal") + launch;
+            if (Input.GetButtonDown("Reset"))
+            {
+                Die();
+            }
+
+            move.x = Input.GetAxis ("Horizontal") + launch;
             
             //Jumping
 			if (Input.GetButtonDown ("Jump") && grounded) {
@@ -184,6 +190,7 @@ public class NewPlayer : PhysicsObject {
 		GameManager.Instance.playerUI.loadSceneName = SceneManager.GetActiveScene().name;
 		GameManager.Instance.playerUI.spawnToObject = "SpawnStart";
 		GameManager.Instance.playerUI.resetPlayer = true;
+        GameManager.Instance.playerIsDead = true;
 		GetComponent<MeshRenderer> ().enabled = false;
 		Freeze (true);
 	}

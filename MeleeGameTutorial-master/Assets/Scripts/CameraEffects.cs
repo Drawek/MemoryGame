@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class CameraEffects : MonoBehaviour {
 
-	[SerializeField] private CinemachineVirtualCamera virtualCamera;
+	public CinemachineVirtualCamera virtualCamera;
 
 	[SerializeField] private CinemachineBasicMultiChannelPerlin multiChannelPerlin;
 	//Shake length should not be higher than 10
@@ -22,7 +22,7 @@ public class CameraEffects : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-		multiChannelPerlin.m_FrequencyGain += (0 - multiChannelPerlin.m_FrequencyGain) * Time.deltaTime * (10-shakeLength);
+		//multiChannelPerlin.m_FrequencyGain += (0 - multiChannelPerlin.m_FrequencyGain) * Time.deltaTime * (10-shakeLength);
 	}
 
 	public void Shake(float shake, float length){

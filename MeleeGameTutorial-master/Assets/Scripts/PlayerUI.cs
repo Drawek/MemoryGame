@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -56,13 +57,23 @@ public class PlayerUI : MonoBehaviour {
 		inventoryItemGraphic.sprite = image;
 	}
 
+    void RestartLevel()
+    {
+        NewPlayer.Instance.transform.position = GameManager.Instance.checkPoint.transform.position;
+        NewPlayer.Instance.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        NewPlayer.Instance.curStress = NewPlayer.Instance.startStress;
+        NewPlayer.Instance.Freeze(false);
+        NewPlayer.Instance.canSwitchWorld = true;
+        GameManager.Instance.isChaosWorld = false;
+        GameManager.Instance.resetWorlds = true;
+    }
+
 	void LoadScene(){
 		startUp.gameObject.tag = "Startup";
 		GameManager.Instance.gemAmount = 0;
 		GameManager.Instance.ClearInventory ();
 		if (resetPlayer) {
-			NewPlayer.Instance.transform.position = GameObject.Find (spawnToObject).transform.position;
-            print(GameObject.Find(spawnToObject));
+			NewPlayer.Instance.transform.position = GameManager.Instance.checkPoint.transform.position;
 			NewPlayer.Instance.gameObject.GetComponent<MeshRenderer> ().enabled = true;
             NewPlayer.Instance.curStress = NewPlayer.Instance.startStress;
             NewPlayer.Instance.Freeze (false);
@@ -73,4 +84,25 @@ public class PlayerUI : MonoBehaviour {
 		Debug.Log ("Got camera effect component");
 	}
 
+    void CoverScreen()
+    {
+        if (GameManager.Instance.playerIsDead)
+        {
+            RestartLevel();
+        }
+        else
+        {
+            LoadScene();
+        }
+        GameManager.Instance.playerIsDead = false;
+    }
+
+    void SwitchLevel()
+    {
+        NewPlayer.Instance.cameraEffect.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GameManager.Instance.curLevel.camBounds;
+        NewPlayer.Instance.cameraEffect.virtualCamera.m_Lens.OrthographicSize = GameManager.Instance.curLevel.camOrthoGraphicSize;
+        NewPlayer.Instance.gameObject.transform.position = GameManager.Instance.entrance.position;
+        NewPlayer.Instance.Freeze(false);
+        GameManager.Instance.resetWorlds = true;
+    }
 }

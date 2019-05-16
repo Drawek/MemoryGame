@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour {
 
 	enum ItemType {InventoryItem, Gem, Orb, Memory};
+    [SerializeField] private SwitchOnWorldState orbParent;
 	[SerializeField] ItemType itemType;
 	[SerializeField] private AudioClip collectSound;
 	[SerializeField] private AudioClip bounceSound;
@@ -51,10 +52,7 @@ public class Collectable : MonoBehaviour {
         }
 
         GameManager.Instance.audioSource.PlayOneShot (collectSound);
-		if (transform.parent.GetComponent<Bouncer> () != null) {
-			Destroy (transform.parent.gameObject);
-		} else {
-			Destroy (gameObject);
-		}
+
+        orbParent.isCollected = true;
 	}
 }
