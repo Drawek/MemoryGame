@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour {
 	public PlayerUI playerUI;
 	public int gemAmount;
 	public Dictionary<string, Sprite> inventory  = new Dictionary<string, Sprite>();
+    public bool isChaosWorld = true;
     [HideInInspector]
-    public bool isChaosWorld = false, wasChaosWorld, switchingWorlds, resetWorlds;
+    public bool wasChaosWorld = true, switchingWorlds, resetWorlds;
     public bool playerIsDead;
     public int startChaos;
     public LevelManager curLevel;
