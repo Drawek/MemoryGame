@@ -60,11 +60,11 @@ public class PlayerUI : MonoBehaviour {
     void RestartLevel()
     {
         NewPlayer.Instance.transform.position = GameManager.Instance.checkPoint.transform.position;
-        NewPlayer.Instance.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        NewPlayer.Instance.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         NewPlayer.Instance.curStress = GameManager.Instance.startChaos; ;
         NewPlayer.Instance.Freeze(false);
         NewPlayer.Instance.canSwitchWorld = true;
-        GameManager.Instance.isChaosWorld = false;
+        GameManager.Instance.isChaosWorld = true;
         GameManager.Instance.resetWorlds = true;
     }
 

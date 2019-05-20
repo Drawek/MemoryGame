@@ -193,7 +193,7 @@ public class NewPlayer : PhysicsObject {
             GameManager.Instance.playerUI.spawnToObject = "SpawnStart";
             GameManager.Instance.playerUI.resetPlayer = true;
             GameManager.Instance.playerIsDead = true;
-            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
             Freeze(true);
         }
     }
