@@ -10,5 +10,6 @@ public class LevelManager : MonoBehaviour
     public GameObject checkPoint;
     public PolygonCollider2D camBounds;
     public float camOrthoGraphicSize;
+    public int startChaos;
 
 }

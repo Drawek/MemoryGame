@@ -61,7 +61,7 @@ public class PlayerUI : MonoBehaviour {
     {
         NewPlayer.Instance.transform.position = GameManager.Instance.checkPoint.transform.position;
         NewPlayer.Instance.gameObject.GetComponent<MeshRenderer>().enabled = true;
-        NewPlayer.Instance.curStress = NewPlayer.Instance.startStress;
+        NewPlayer.Instance.curStress = GameManager.Instance.startChaos; ;
         NewPlayer.Instance.Freeze(false);
         NewPlayer.Instance.canSwitchWorld = true;
         GameManager.Instance.isChaosWorld = false;
@@ -104,5 +104,6 @@ public class PlayerUI : MonoBehaviour {
         NewPlayer.Instance.gameObject.transform.position = GameManager.Instance.entrance.position;
         NewPlayer.Instance.Freeze(false);
         GameManager.Instance.resetWorlds = true;
+        GameManager.Instance.startChaos = GameManager.Instance.curLevel.startChaos;
     }
 }

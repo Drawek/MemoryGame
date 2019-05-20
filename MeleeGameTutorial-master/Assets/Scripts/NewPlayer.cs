@@ -183,17 +183,20 @@ public class NewPlayer : PhysicsObject {
 	}
 
 	public void Die(){
-		deathParticles.gameObject.SetActive (true);
-		deathParticles.Emit (10);
-		//deathParticles.transform.parent = transform.parent;
-		GameManager.Instance.playerUI.animator.SetTrigger ("coverScreen");
-		GameManager.Instance.playerUI.loadSceneName = SceneManager.GetActiveScene().name;
-		GameManager.Instance.playerUI.spawnToObject = "SpawnStart";
-		GameManager.Instance.playerUI.resetPlayer = true;
-        GameManager.Instance.playerIsDead = true;
-		GetComponent<MeshRenderer> ().enabled = false;
-		Freeze (true);
-	}
+        if (!GameManager.Instance.playerIsDead)
+        {
+            deathParticles.gameObject.SetActive(true);
+            deathParticles.Emit(10);
+            //deathParticles.transform.parent = transform.parent;
+            GameManager.Instance.playerUI.animator.SetTrigger("coverScreen");
+            GameManager.Instance.playerUI.loadSceneName = SceneManager.GetActiveScene().name;
+            GameManager.Instance.playerUI.spawnToObject = "SpawnStart";
+            GameManager.Instance.playerUI.resetPlayer = true;
+            GameManager.Instance.playerIsDead = true;
+            GetComponent<MeshRenderer>().enabled = false;
+            Freeze(true);
+        }
+    }
 
 	public void ResetLevel(){
 		Freeze (false);

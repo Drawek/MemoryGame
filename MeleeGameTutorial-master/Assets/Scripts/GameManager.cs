@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public bool isChaosWorld = false, wasChaosWorld, switchingWorlds, resetWorlds;
     public bool playerIsDead;
+    public int startChaos;
     public LevelManager curLevel;
     private static GameManager instance;
 	public static GameManager Instance{
