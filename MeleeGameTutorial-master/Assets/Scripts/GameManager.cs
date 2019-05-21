@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
     public bool wasChaosWorld = true, switchingWorlds, resetWorlds;
     public bool playerIsDead;
     public int startChaos;
-    public LevelManager curLevel;
+    public LevelManager curLevel, lastLevel;
     private static GameManager instance;
 	public static GameManager Instance{
         get { 

@@ -37,6 +37,7 @@ public class NewPlayer : PhysicsObject {
 	public AudioClip grassSound;
 	public AudioClip stoneSound;
 
+    public GameObject headSpriteLight, headSpriteDark;
 	[SerializeField] private float launchRecovery;
 	[SerializeField] private GameObject graphic;
 	[SerializeField] private Animator animator;
@@ -77,6 +78,7 @@ public class NewPlayer : PhysicsObject {
 		launch += (0 - launch) * Time.deltaTime*launchRecovery;
 
         if (!frozen) {
+            SwitchHead();
             if (Input.GetButtonDown("Reset"))
             {
                 Die();
@@ -149,6 +151,31 @@ public class NewPlayer : PhysicsObject {
 		audioSource.PlayOneShot(NewPlayer.Instance.jumpSound);
 	}
 
+    public void SwitchHead()
+    {
+        if(curStress < 0)
+        {
+            headSpriteDark.SetActive(false);
+            headSpriteLight.SetActive(true);
+            headSpriteLight.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            headSpriteDark.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        else if ( curStress == 0)
+        {
+            headSpriteDark.SetActive(true);
+            headSpriteLight.SetActive(true);
+            headSpriteLight.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            headSpriteDark.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        }
+        else
+        {
+            headSpriteDark.SetActive(true);
+            headSpriteLight.SetActive(false);
+            headSpriteLight.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            headSpriteDark.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+    }
+
     public void CollectOrb(int amount)
     {
         curStress += amount;
@@ -187,6 +214,7 @@ public class NewPlayer : PhysicsObject {
         {
             deathParticles.gameObject.SetActive(true);
             deathParticles.Emit(10);
+            deathParticles.gameObject.GetComponent<AudioSource>().Play();
             //deathParticles.transform.parent = transform.parent;
             GameManager.Instance.playerUI.animator.SetTrigger("coverScreen");
             GameManager.Instance.playerUI.loadSceneName = SceneManager.GetActiveScene().name;
@@ -194,6 +222,8 @@ public class NewPlayer : PhysicsObject {
             GameManager.Instance.playerUI.resetPlayer = true;
             GameManager.Instance.playerIsDead = true;
             GetComponent<SpriteRenderer>().enabled = false;
+            headSpriteDark.GetComponent<SpriteRenderer>().enabled = false;
+            headSpriteLight.GetComponent<SpriteRenderer>().enabled = false;
             Freeze(true);
         }
     }

@@ -9,6 +9,7 @@ public class PhysicsObject : MonoBehaviour {
 
     protected Vector2 targetVelocity;
     public bool grounded;
+    private int groundedTimer;
     [SerializeField] protected Vector2 groundNormal;
     protected Rigidbody2D rb2d;
     public Vector2 velocity;
@@ -48,6 +49,8 @@ public class PhysicsObject : MonoBehaviour {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
         velocity.x = targetVelocity.x;
 
+        groundedTimer++;
+        if(groundedTimer >= 3)
         grounded = false;
 
         Vector2 deltaPosition = velocity * Time.deltaTime;
@@ -88,6 +91,7 @@ public class PhysicsObject : MonoBehaviour {
 				Vector2 currentNormal = hitBufferList[i].normal;
 				if(currentNormal.y>minGroundNormalY)
 				{
+                    groundedTimer = 0; 
 					grounded = true;
 					if(yMovement){
 						groundNormal = currentNormal;

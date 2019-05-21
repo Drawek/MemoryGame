@@ -64,6 +64,8 @@ public class PlayerUI : MonoBehaviour {
         NewPlayer.Instance.curStress = GameManager.Instance.startChaos; ;
         NewPlayer.Instance.Freeze(false);
         NewPlayer.Instance.canSwitchWorld = true;
+        NewPlayer.Instance.headSpriteDark.GetComponent<SpriteRenderer>().enabled = true;
+        NewPlayer.Instance.headSpriteLight.GetComponent<SpriteRenderer>().enabled = true;
         GameManager.Instance.isChaosWorld = true;
         GameManager.Instance.resetWorlds = true;
     }
@@ -102,6 +104,8 @@ public class PlayerUI : MonoBehaviour {
         NewPlayer.Instance.cameraEffect.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GameManager.Instance.curLevel.camBounds;
         NewPlayer.Instance.cameraEffect.virtualCamera.m_Lens.OrthographicSize = GameManager.Instance.curLevel.camOrthoGraphicSize;
         NewPlayer.Instance.gameObject.transform.position = GameManager.Instance.entrance.position;
+        GameManager.Instance.curLevel.gameObject.SetActive(true);
+        GameManager.Instance.lastLevel.gameObject.SetActive(false);
         NewPlayer.Instance.Freeze(false);
         GameManager.Instance.resetWorlds = true;
         GameManager.Instance.startChaos = GameManager.Instance.curLevel.startChaos;

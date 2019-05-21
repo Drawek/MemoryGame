@@ -14,6 +14,7 @@ public class Collectable : MonoBehaviour {
 	[SerializeField] private int itemAmount;
     [SerializeField] private int yinYangAmount;
 	[SerializeField] private Sprite image;
+    [SerializeField] private GameObject vfxParticles;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,8 @@ public class Collectable : MonoBehaviour {
         else if (itemType == ItemType.Orb)
         {
             NewPlayer.Instance.CollectOrb(yinYangAmount);
+            if(vfxParticles != null)
+            Instantiate(vfxParticles, transform.position, Quaternion.identity);
         }
         else if (itemType == ItemType.Memory)
         {
