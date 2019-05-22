@@ -35,8 +35,11 @@ public class PhysicsObject : MonoBehaviour {
     
     void Update () 
     {
-        targetVelocity = Vector2.zero;
-        ComputeVelocity (); 
+        if (!GameManager.Instance.gameIsPaused)
+        {
+            targetVelocity = Vector2.zero;
+            ComputeVelocity();
+        }
     }
 
     protected virtual void ComputeVelocity()

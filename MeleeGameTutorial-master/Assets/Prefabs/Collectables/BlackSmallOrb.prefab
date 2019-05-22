@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbParent: {fileID: 2601949165247404749}
   itemType: 2
-  collectSound: {fileID: 8300000, guid: 298038e41a9174325aa6b99c4455f44b, type: 3}
+  collectSound: {fileID: 8300000, guid: a113f1d3bc0a46045910d3a2e2e67a79, type: 3}
   bounceSound: {fileID: 8300000, guid: 697b854cdabec4c698c51e07ecf440bc, type: 3}
   audioSource: {fileID: 7263218835870274040}
   itemName: 

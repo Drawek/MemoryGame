@@ -20,14 +20,17 @@ public class PlayerUI : MonoBehaviour {
 	[SerializeField] private float gemAmountSmooth;
 	[SerializeField] private float gemAmountEase;
 	[SerializeField] private float gemAmountOld;
+    public string tutorialText;
+    public TextMeshProUGUI tutorialTMP;
 	public bool resetPlayer;
 	public string loadSceneName;
 	public Sprite blankUI;
 
+    public GameObject menu;
 
 	// Use this for initialization
 	void Start () {
-		healthBarWidth = 1;
+        healthBarWidth = 1;
 		healthBarWidthSmooth = healthBarWidth;
 		gemAmountSmooth = (float)GameManager.Instance.gemAmount;
 		gemAmountOld = gemAmountSmooth;
@@ -43,8 +46,12 @@ public class PlayerUI : MonoBehaviour {
 			animator.SetTrigger ("getGem");
 			gemAmountOld = gemAmountSmooth+1;
 		}
+        if (GameManager.Instance.gameIsPaused)
+            menu.SetActive(true);
+        else
+            menu.SetActive(false);
 
-		healthBarWidth = ((float)NewPlayer.Instance.stressTolerance + (float)NewPlayer.Instance.curStress) / ((float)NewPlayer.Instance.stressTolerance*2);
+        healthBarWidth = ((float)NewPlayer.Instance.stressTolerance + (float)NewPlayer.Instance.curStress) / ((float)NewPlayer.Instance.stressTolerance*2);
 		healthBarWidthSmooth += (healthBarWidth - healthBarWidthSmooth) * Time.deltaTime * healthBarWidthEase;
 		healthBar.transform.localScale = new Vector2 (healthBarWidthSmooth, healthBar.transform.localScale.y);
 	}
@@ -56,6 +63,13 @@ public class PlayerUI : MonoBehaviour {
 	public void SetInventoryImage(Sprite image){
 		inventoryItemGraphic.sprite = image;
 	}
+
+    public IEnumerator PlayTutorial()
+    {
+        yield return new WaitForSeconds(0);
+        tutorialTMP.text = tutorialText;
+        animator.SetTrigger("PlayTutorial");
+    }
 
     void RestartLevel()
     {
@@ -74,15 +88,14 @@ public class PlayerUI : MonoBehaviour {
 		startUp.gameObject.tag = "Startup";
 		GameManager.Instance.gemAmount = 0;
 		GameManager.Instance.ClearInventory ();
-		if (resetPlayer) {
-			NewPlayer.Instance.transform.position = GameManager.Instance.checkPoint.transform.position;
-			NewPlayer.Instance.gameObject.GetComponent<MeshRenderer> ().enabled = true;
-            NewPlayer.Instance.curStress = NewPlayer.Instance.startStress;
+        SceneManager.LoadScene(loadSceneName);
+        NewPlayer.Instance.transform.position = GameManager.Instance.checkPoint.transform.position;
+        if (resetPlayer) {
             NewPlayer.Instance.Freeze (false);
             NewPlayer.Instance.canSwitchWorld = true;
             GameManager.Instance.isChaosWorld = false;
 		}
-		SceneManager.LoadScene(loadSceneName);
+		
 		Debug.Log ("Got camera effect component");
 	}
 

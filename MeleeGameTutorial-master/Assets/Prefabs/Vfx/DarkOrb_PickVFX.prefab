@@ -5086,8 +5086,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 1
+      scalar: 5
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5841,22 +5841,22 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.0026893616
-          value: 0.9885025
-          inSlope: 0
-          outSlope: 0
+          time: 0
+          value: 0.8505688
+          inSlope: 1.2182972
+          outSlope: 1.2182972
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.17345057
         - serializedVersion: 3
-          time: 0.9516139
-          value: 0.12643579
-          inSlope: -0.27586624
-          outSlope: -0.27586624
+          time: 0.9939513
+          value: 0.017242432
+          inSlope: 0.3107101
+          outSlope: 0.3107101
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.17563859
+          inWeight: 0.22331512
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -6163,7 +6163,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.93494034, b: 0.5518868, a: 1}
+        key0: {r: 0.9622642, g: 0.7294739, b: 0.24964403, a: 1}
         key1: {r: 1, g: 0.4289133, b: 0.0047169924, a: 0.93333334}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -9514,7 +9514,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c244f802e12643a4190b18252c0a5465, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
 	public AudioSource audioSource;
 	public DialogueBox dialogueBox;
 	public PlayerUI playerUI;
+
+    public bool gameIsPaused;
+
 	public int gemAmount;
 	public Dictionary<string, Sprite> inventory  = new Dictionary<string, Sprite>();
     public bool isChaosWorld = true;
@@ -40,6 +43,14 @@ public class GameManager : MonoBehaviour {
         }
         else
             switchingWorlds = false;
+
+        if (Input.GetButtonDown("Cancel"))
+            gameIsPaused = !gameIsPaused;
+
+        if (gameIsPaused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
     private void LateUpdate()
