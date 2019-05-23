@@ -6,6 +6,7 @@ public class PhysicsObject : MonoBehaviour {
 
 	[SerializeField] public float minGroundNormalY = .65f;
     public float gravityModifier = 1f;
+    [HideInInspector]public float slowfallModifier = 1f;
 
     protected Vector2 targetVelocity;
     public bool grounded;
@@ -49,8 +50,9 @@ public class PhysicsObject : MonoBehaviour {
 
     void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime * slowfallModifier;
         velocity.x = targetVelocity.x;
+        velocity.y = Mathf.Clamp(velocity.y, -20, 100);
 
         groundedTimer++;
         if(groundedTimer >= 3)

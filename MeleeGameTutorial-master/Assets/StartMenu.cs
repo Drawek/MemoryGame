@@ -5,14 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    
-    public void PlayGame(string sceneName)
+    public AudioSource btn_Sound, music;
+    private bool pressedPlay;
+
+    private void Update()
     {
-        SceneManager.LoadScene(sceneName);
+        if (pressedPlay)
+            music.volume = Mathf.MoveTowards(music.volume, 0, Time.deltaTime);
+    }
+
+    public void PlayGame()
+    {
+        if (!pressedPlay)
+        {
+            pressedPlay = true;
+            if (btn_Sound != null)
+                btn_Sound.Play();
+            GetComponent<Animator>().SetTrigger("Fade");
+        }
     }
 
     public void ExitGame()
     {
-        Application.Quit();
+        if (!pressedPlay)
+        {
+            if (btn_Sound != null)
+                btn_Sound.Play();
+            Application.Quit();
+        }
+    }
+    public void FadeScreen()
+    {
+        SceneManager.LoadScene("IntroMovie");
     }
 }

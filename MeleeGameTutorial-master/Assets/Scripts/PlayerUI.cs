@@ -25,11 +25,14 @@ public class PlayerUI : MonoBehaviour {
 	public bool resetPlayer;
 	public string loadSceneName;
 	public Sprite blankUI;
+    public enum FadeType {loadLevel, switchScene}
+    [HideInInspector]public FadeType fadeType;
 
     public GameObject menu;
 
 	// Use this for initialization
 	void Start () {
+        fadeType = FadeType.switchScene;
         healthBarWidth = 1;
 		healthBarWidthSmooth = healthBarWidth;
 		gemAmountSmooth = (float)GameManager.Instance.gemAmount;
@@ -114,13 +117,20 @@ public class PlayerUI : MonoBehaviour {
 
     void SwitchLevel()
     {
-        NewPlayer.Instance.cameraEffect.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GameManager.Instance.curLevel.camBounds;
-        NewPlayer.Instance.cameraEffect.virtualCamera.m_Lens.OrthographicSize = GameManager.Instance.curLevel.camOrthoGraphicSize;
-        NewPlayer.Instance.gameObject.transform.position = GameManager.Instance.entrance.position;
-        GameManager.Instance.curLevel.gameObject.SetActive(true);
-        GameManager.Instance.lastLevel.gameObject.SetActive(false);
-        NewPlayer.Instance.Freeze(false);
-        GameManager.Instance.resetWorlds = true;
-        GameManager.Instance.startChaos = GameManager.Instance.curLevel.startChaos;
+        if(fadeType == FadeType.switchScene)
+        {
+            NewPlayer.Instance.cameraEffect.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GameManager.Instance.curLevel.camBounds;
+            NewPlayer.Instance.cameraEffect.virtualCamera.m_Lens.OrthographicSize = GameManager.Instance.curLevel.camOrthoGraphicSize;
+            NewPlayer.Instance.gameObject.transform.position = GameManager.Instance.entrance.position;
+            GameManager.Instance.curLevel.gameObject.SetActive(true);
+            GameManager.Instance.lastLevel.gameObject.SetActive(false);
+            NewPlayer.Instance.Freeze(false);
+            GameManager.Instance.resetWorlds = true;
+            GameManager.Instance.startChaos = GameManager.Instance.curLevel.startChaos;
+        }
+        else if (fadeType == FadeType.loadLevel)
+        {
+            SceneManager.LoadScene(loadSceneName);
+        }
     }
 }

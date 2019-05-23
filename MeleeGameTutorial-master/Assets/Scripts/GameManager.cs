@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public bool playerIsDead;
     public int startChaos;
     public LevelManager curLevel, lastLevel;
+    public GameObject everything;
     private static GameManager instance;
 	public static GameManager Instance{
         get { 

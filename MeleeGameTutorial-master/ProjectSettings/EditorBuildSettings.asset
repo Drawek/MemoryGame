@@ -9,15 +9,12 @@ EditorBuildSettings:
     path: Assets/SampleScenes/Start Menu.unity
     guid: c31a82992b1954c408ca7d98c9764e52
   - enabled: 1
+    path: Assets/SampleScenes/IntroMovie.unity
+    guid: a831cb194a2e3e641898822d532849b2
+  - enabled: 1
     path: Assets/SampleScenes/Level 1.unity
     guid: 42889d1861c8d1445ab5e1cb8d3228ec
   - enabled: 1
-    path: Assets/SampleScenes/Level 2.unity
-    guid: 708fd4e042932824b9d28c0f42d82418
-  - enabled: 1
-    path: Assets/SampleScenes/TestLevel - Kasper.unity
-    guid: 8861c709b7638fd468dd3ee66d235db2
-  - enabled: 1
-    path: Assets/SampleScenes/TestLevel - Kasper 1.unity
-    guid: 90ef132ae0c8fd54a913971e1ee98827
+    path: Assets/SampleScenes/EndingMovie.unity
+    guid: 31fce031d5e7d6140a03aeb462f7283c
   m_configObjects: {}

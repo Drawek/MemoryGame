@@ -45,6 +45,7 @@ public class NewPlayer : PhysicsObject {
 
 	public RaycastHit2D ground;
 
+
 	private static NewPlayer instance;
 	public static NewPlayer Instance{
 		get 
@@ -93,13 +94,15 @@ public class NewPlayer : PhysicsObject {
 				PlayStepSound ();
 			}
 
-			if (move.x > 0.01f) {
+			if (move.x * GameManager.Instance.everything.transform.localScale.x > 0.01f)
+            {
 				if (graphic.transform.localScale.x < 0) {
 					graphic.transform.localScale = new Vector3 (origLocalScale.x, transform.localScale.y, transform.localScale.z);
 				}
-			} else if (move.x < -0.01f) {
-				if (graphic.transform.localScale.x > 0) {
-					graphic.transform.localScale = new Vector3 (-origLocalScale.x, transform.localScale.y, transform.localScale.z);
+			}
+            else if (move.x * GameManager.Instance.everything.transform.localScale.x < -0.01f) {
+				if (graphic.transform.localScale.x  > 0) {
+					graphic.transform.localScale = new Vector3 (-origLocalScale.x , transform.localScale.y, transform.localScale.z);
 				}
 			}
 
