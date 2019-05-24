@@ -9,7 +9,7 @@ public class DestroyAfterTime : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        Destroy();
+        StartCoroutine(Destroy());
     }
     private IEnumerator Destroy()
     {

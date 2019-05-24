@@ -37,5 +37,10 @@ public class AnimatorFunctions : MonoBehaviour {
 	public void ScreenShake(float power){
 		NewPlayer.Instance.cameraEffect.Shake (power, 1f);
 	}
-		
+
+    public void DestroyNow()
+    {
+        Destroy(this.gameObject);        
+    }
+
 }
