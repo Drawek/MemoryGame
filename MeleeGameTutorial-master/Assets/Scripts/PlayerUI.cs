@@ -133,4 +133,9 @@ public class PlayerUI : MonoBehaviour {
             SceneManager.LoadScene(loadSceneName);
         }
     }
+
+    void SwitchWorld()
+    {
+        GameManager.Instance.isChaosWorld = !GameManager.Instance.isChaosWorld;
+    }
 }

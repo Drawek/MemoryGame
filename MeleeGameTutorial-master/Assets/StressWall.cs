@@ -6,6 +6,7 @@ public class StressWall : MonoBehaviour
 {
     public int stressRequired;
     private int lastStress;
+    private bool lastWorldState;
     public TextMeshPro text;
     public GameObject[] sprites;
     // Update is called once per frame
@@ -19,9 +20,11 @@ public class StressWall : MonoBehaviour
 
     void Update()
     {
-        if(lastStress != NewPlayer.Instance.curStress)
+        if(lastStress != NewPlayer.Instance.curStress || GameManager.Instance.isChaosWorld != lastWorldState)
         {
+            print("SwitchWorld");
             CalculateOpening();
+            lastWorldState = GameManager.Instance.isChaosWorld;
             lastStress = NewPlayer.Instance.curStress;
         }        
     }
@@ -43,20 +46,26 @@ public class StressWall : MonoBehaviour
                 for (int i = 0; i < sprites.Length; i++)
                 {
                     if (i < amountOfWhiteOrbs())
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.25f);
                     else
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1f);
                 }
             }
             if (amountOfWhiteOrbs() >= -stressRequired)
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallOpen");
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.25f);
+                if (GameManager.Instance.isChaosWorld)
+                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.15f);
+                else
+                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
             }
             else
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallClosed");
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+                if (GameManager.Instance.isChaosWorld)
+                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.9f);
+                else
+                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.9f);
             }
 
 
@@ -71,18 +80,24 @@ public class StressWall : MonoBehaviour
                     if (i < amountOfBlackOrbs())
                         sprites[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.25f);
                     else
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1f);
+                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0, 1f);
                 }
             }
             if (amountOfBlackOrbs() >= stressRequired)
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallOpen");
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.15f);
+                if(GameManager.Instance.isChaosWorld)
+                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.15f);
+                else
+                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
             }
             else
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallClosed");
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+                if (GameManager.Instance.isChaosWorld)
+                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.9f);
+                else
+                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.9f);
             }
         }
     }

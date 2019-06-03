@@ -36,6 +36,7 @@ public class NewPlayer : PhysicsObject {
 	public AudioClip jumpSound;
 	public AudioClip grassSound;
 	public AudioClip stoneSound;
+    public AudioClip switchWorldSound;
 
     public GameObject headSpriteLight, headSpriteDark;
 	[SerializeField] private float launchRecovery;
@@ -69,6 +70,8 @@ public class NewPlayer : PhysicsObject {
         //Switching Worlds
         if (Input.GetButtonDown("SwitchWorld") && canSwitchWorld)
         {
+            if (switchWorldSound != null)
+                PlaySwitchWorldSound();
             GameManager.Instance.SwitchWorld();
         }
         
@@ -143,6 +146,12 @@ public class NewPlayer : PhysicsObject {
 		frozen = freeze;
 		launch = 0;
 	}
+
+    public void PlaySwitchWorldSound()
+    {
+        audioSource.pitch = (Random.Range(0.6f, 1f));
+        audioSource.PlayOneShot(NewPlayer.Instance.switchWorldSound);
+    }
 
 	public void PlayStepSound(){
 		audioSource.pitch = (Random.Range(0.6f, 1f));

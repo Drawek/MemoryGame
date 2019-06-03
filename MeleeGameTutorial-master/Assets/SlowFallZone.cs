@@ -8,7 +8,8 @@ public class SlowFallZone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            NewPlayer.Instance.slowfallModifier = 0.25f;
+            if(Input.GetButtonDown("SwitchWorld"))
+                NewPlayer.Instance.slowfallModifier = 0.25f;
         }
     }
 

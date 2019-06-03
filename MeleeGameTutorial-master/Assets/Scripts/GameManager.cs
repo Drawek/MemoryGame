@@ -77,7 +77,8 @@ public class GameManager : MonoBehaviour {
 
     public void SwitchWorld()
     {
-        isChaosWorld = !isChaosWorld;
+        playerUI.animator.SetTrigger("SwitchWorld");
+        //isChaosWorld = !isChaosWorld;
     }
 
     IEnumerator ResetWorld()
