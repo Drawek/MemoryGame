@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     private bool isActivated;
     public GameObject checkPoint;
     public PolygonCollider2D camBounds;
+    public float camDistance;
     public float camOrthoGraphicSize;
     public int startChaos;
 

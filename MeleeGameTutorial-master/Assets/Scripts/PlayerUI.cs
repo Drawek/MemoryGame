@@ -121,6 +121,7 @@ public class PlayerUI : MonoBehaviour {
         {
             NewPlayer.Instance.cameraEffect.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GameManager.Instance.curLevel.camBounds;
             NewPlayer.Instance.cameraEffect.virtualCamera.m_Lens.OrthographicSize = GameManager.Instance.curLevel.camOrthoGraphicSize;
+            NewPlayer.Instance.cameraEffect.virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = GameManager.Instance.curLevel.camDistance;
             NewPlayer.Instance.gameObject.transform.position = GameManager.Instance.entrance.position;
             GameManager.Instance.curLevel.gameObject.SetActive(true);
             GameManager.Instance.lastLevel.gameObject.SetActive(false);

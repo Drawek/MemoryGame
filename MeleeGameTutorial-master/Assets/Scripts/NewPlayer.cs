@@ -149,7 +149,7 @@ public class NewPlayer : PhysicsObject {
 
     public void PlaySwitchWorldSound()
     {
-        audioSource.pitch = (Random.Range(0.6f, 1f));
+        audioSource.pitch = (Random.Range(0.8f, 1.2f));
         audioSource.PlayOneShot(NewPlayer.Instance.switchWorldSound);
     }
 
