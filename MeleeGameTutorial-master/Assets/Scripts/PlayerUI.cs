@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour {
 
 	[SerializeField] private GameObject startUp;
 	public string spawnToObject;
-	[SerializeField] private GameObject healthBar, pillBar;
+	[SerializeField] private GameObject healthBar, pillBar, blueBar;
 	[SerializeField] private float healthBarWidth;
 	private float healthBarWidthSmooth;
 	[SerializeField] private float healthBarWidthEase;
@@ -29,6 +29,9 @@ public class PlayerUI : MonoBehaviour {
     [HideInInspector]public FadeType fadeType;
 
     public GameObject menu;
+    public Sprite healthFour, healthSix, healthEight;
+    public Sprite blueFour, blueSix, blueEight;
+    public Sprite orangeFour, orangeSix, orangeEight;
 
 	// Use this for initialization
 	void Start () {
@@ -54,10 +57,42 @@ public class PlayerUI : MonoBehaviour {
         else
             menu.SetActive(false);
 
-        healthBarWidth = ((float)NewPlayer.Instance.stressTolerance + (float)NewPlayer.Instance.curStress) / ((float)NewPlayer.Instance.stressTolerance*2);
-		healthBarWidthSmooth += (healthBarWidth - healthBarWidthSmooth) * Time.deltaTime * healthBarWidthEase;
-		healthBar.transform.localScale = new Vector2 (healthBarWidthSmooth, healthBar.transform.localScale.y);
-	}
+        if (NewPlayer.Instance.stressTolerance == 2)
+        {
+            blueBar.GetComponent<Image>().sprite = blueFour;
+            blueBar.GetComponent<RectTransform>().localPosition = new Vector3(91.4f, blueBar.GetComponent<RectTransform>().localPosition.y, blueBar.GetComponent<RectTransform>().localPosition.z);
+            pillBar.GetComponent<Image>().sprite = healthFour;
+            healthBar.GetComponent<Image>().sprite = orangeFour;
+            pillBar.GetComponent<RectTransform>().sizeDelta = new Vector2(268, pillBar.GetComponent<RectTransform>().sizeDelta.y);
+            healthBarWidth = 27 + 43 * ((float)NewPlayer.Instance.stressTolerance + (float)NewPlayer.Instance.curStress);
+            healthBarWidthSmooth += (healthBarWidth - healthBarWidthSmooth) * Time.deltaTime * healthBarWidthEase;
+            healthBar.GetComponent<RectTransform>().sizeDelta = new Vector2( healthBarWidthSmooth, healthBar.GetComponent<RectTransform>().sizeDelta.y);
+        }
+        else if (NewPlayer.Instance.stressTolerance == 3)
+        {
+            blueBar.GetComponent<Image>().sprite = blueSix;
+            blueBar.GetComponent<RectTransform>().localPosition = new Vector3(46f, blueBar.GetComponent<RectTransform>().localPosition.y, blueBar.GetComponent<RectTransform>().localPosition.z);
+            pillBar.GetComponent<Image>().sprite = healthSix;
+            pillBar.GetComponent < RectTransform > ().sizeDelta = new Vector2(359, pillBar.GetComponent<RectTransform>().sizeDelta.y);
+            healthBar.GetComponent<Image>().sprite = orangeSix;
+            healthBarWidth = 27 + 43 * ((float)NewPlayer.Instance.stressTolerance + (float)NewPlayer.Instance.curStress);
+            healthBarWidthSmooth += (healthBarWidth - healthBarWidthSmooth) * Time.deltaTime * healthBarWidthEase;
+            healthBar.GetComponent<RectTransform>().sizeDelta = new Vector2(healthBarWidthSmooth, healthBar.GetComponent<RectTransform>().sizeDelta.y);
+
+        }
+        else if (NewPlayer.Instance.stressTolerance == 4)
+        {
+            blueBar.GetComponent<Image>().sprite = blueEight;
+            blueBar.GetComponent<RectTransform>().localPosition = new Vector3(0, blueBar.GetComponent<RectTransform>().localPosition.y, blueBar.GetComponent<RectTransform>().localPosition.z);
+            pillBar.GetComponent<Image>().sprite = healthEight;
+            pillBar.GetComponent<RectTransform>().sizeDelta = new Vector2(449, pillBar.GetComponent<RectTransform>().sizeDelta.y);
+            healthBar.GetComponent<Image>().sprite = orangeEight;
+            healthBarWidth = 27 + 43 * ((float)NewPlayer.Instance.stressTolerance + (float)NewPlayer.Instance.curStress);
+            healthBarWidthSmooth += (healthBarWidth - healthBarWidthSmooth) * Time.deltaTime * healthBarWidthEase;
+            healthBar.GetComponent<RectTransform>().sizeDelta = new Vector2(healthBarWidthSmooth, healthBar.GetComponent<RectTransform>().sizeDelta.y);
+
+        }
+    }
 
 	public void HealthBarHurt(){
 		animator.SetTrigger ("hurt");
