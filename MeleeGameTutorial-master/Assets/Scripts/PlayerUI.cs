@@ -57,6 +57,11 @@ public class PlayerUI : MonoBehaviour {
         else
             menu.SetActive(false);
 
+        if (GameManager.Instance.isChaosWorld)
+            pillBar.GetComponent<Image>().color = Color.black;
+        else
+            pillBar.GetComponent<Image>().color = Color.white;
+
         if (NewPlayer.Instance.stressTolerance == 2)
         {
             blueBar.GetComponent<Image>().sprite = blueFour;

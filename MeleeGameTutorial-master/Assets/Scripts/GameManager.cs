@@ -52,6 +52,22 @@ public class GameManager : MonoBehaviour {
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(NewPlayer.Instance.stressTolerance != 4)
+            {
+                NewPlayer.Instance.stressTolerance++;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if (NewPlayer.Instance.stressTolerance != 2)
+            {
+                NewPlayer.Instance.stressTolerance--;
+            }
+        }
+
     }
 
     private void LateUpdate()

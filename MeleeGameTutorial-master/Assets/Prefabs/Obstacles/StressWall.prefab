@@ -96,6 +96,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stressRequired: -1
   text: {fileID: 5049303843422152892}
+  sprites: []
+  lightWorldWall: {fileID: 21300000, guid: 503d3a1f39a6bea4bad491a4a1f1ec29, type: 3}
+  darkWorldWall: {fileID: 21300000, guid: fe4321e594adcd647a9e85b2fe94c21b, type: 3}
+  orangeOrbOpen: {fileID: 21300000, guid: 3d8018a65a4669f40b3be251f3405045, type: 3}
+  orangeOrbClosed: {fileID: 21300000, guid: e59bb7acf9429ab428825440ce4d6968, type: 3}
+  blueOrbOpen: {fileID: 21300000, guid: f25dd2d0304e0f840879ad2f20fcd5c4, type: 3}
+  blueOrbClosed: {fileID: 21300000, guid: 05fd3470104cd5b46895d04115f77bb9, type: 3}
 --- !u!61 &5049303842522379785
 BoxCollider2D:
   m_ObjectHideFlags: 0

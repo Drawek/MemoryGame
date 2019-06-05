@@ -13,7 +13,6 @@ public class ExitLevel : MonoBehaviour
         {
             GameManager.Instance.lastLevel = GameManager.Instance.curLevel;
             NewPlayer.Instance.frozen = true;
-            NewPlayer.Instance.curStress = 0;
             GameManager.Instance.entrance = entrance;
             GameManager.Instance.checkPoint = entrance.gameObject;
 

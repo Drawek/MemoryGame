@@ -9,6 +9,8 @@ public class StressWall : MonoBehaviour
     private bool lastWorldState;
     public TextMeshPro text;
     public GameObject[] sprites;
+    public Sprite lightWorldWall, darkWorldWall;
+    public Sprite orangeOrbOpen, orangeOrbClosed, blueOrbOpen, blueOrbClosed;
     // Update is called once per frame
     private void Start()
     {
@@ -46,26 +48,29 @@ public class StressWall : MonoBehaviour
                 for (int i = 0; i < sprites.Length; i++)
                 {
                     if (i < amountOfWhiteOrbs())
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.25f);
+                        sprites[i].GetComponent<SpriteRenderer>().sprite = blueOrbClosed;
                     else
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1f);
+                        sprites[i].GetComponent<SpriteRenderer>().sprite = blueOrbOpen;
+                   
                 }
             }
             if (amountOfWhiteOrbs() >= -stressRequired)
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallOpen");
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
                 if (GameManager.Instance.isChaosWorld)
-                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.15f);
+                    GetComponent<SpriteRenderer>().sprite = darkWorldWall;
                 else
-                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
+                    GetComponent<SpriteRenderer>().sprite = lightWorldWall;
             }
             else
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallClosed");
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
                 if (GameManager.Instance.isChaosWorld)
-                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.9f);
+                    GetComponent<SpriteRenderer>().sprite = darkWorldWall;
                 else
-                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.9f);
+                    GetComponent<SpriteRenderer>().sprite = lightWorldWall;
             }
 
 
@@ -78,26 +83,28 @@ public class StressWall : MonoBehaviour
                 for (int i = 0; i < sprites.Length; i++)
                 {
                     if (i < amountOfBlackOrbs())
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.25f);
+                        sprites[i].GetComponent<SpriteRenderer>().sprite = orangeOrbClosed;
                     else
-                        sprites[i].GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0, 1f);
+                        sprites[i].GetComponent<SpriteRenderer>().sprite = orangeOrbOpen;
                 }
             }
             if (amountOfBlackOrbs() >= stressRequired)
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallOpen");
-                if(GameManager.Instance.isChaosWorld)
-                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.15f);
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
+                if (GameManager.Instance.isChaosWorld)
+                    GetComponent<SpriteRenderer>().sprite = darkWorldWall;
                 else
-                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
+                    GetComponent<SpriteRenderer>().sprite = lightWorldWall;
             }
             else
             {
                 gameObject.layer = LayerMask.NameToLayer("EnergyWallClosed");
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
                 if (GameManager.Instance.isChaosWorld)
-                    GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.9f);
+                    GetComponent<SpriteRenderer>().sprite = darkWorldWall;
                 else
-                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.9f);
+                    GetComponent<SpriteRenderer>().sprite = lightWorldWall;
             }
         }
     }
