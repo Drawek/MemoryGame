@@ -8,6 +8,7 @@ public class Memory : MonoBehaviour
     public AudioSource sound;
     private bool hasBeenPickedUp;
     public int dir = 1;
+    public int toleranceIncrease;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,7 +16,7 @@ public class Memory : MonoBehaviour
         {
             if (!hasBeenPickedUp)
             {
-                NewPlayer.Instance.stressTolerance++;
+                NewPlayer.Instance.stressTolerance += toleranceIncrease;
                 hasBeenPickedUp = true;
                 GameManager.Instance.everything.transform.localScale = new Vector3(dir, 1, 1);
             }
